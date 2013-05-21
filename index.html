@@ -11,12 +11,9 @@
       Redwah
     </header>
     <div data-ng-controller="GridCtrl">
-      <table class="small-12 large-12 columns">
+      <table class="small-4 large-2 columns sticky">
         <tr><td>Name</td></tr>
-        <tr><td>Cold Fridge</td></tr>
-        <tr><td>Outlets</td></tr>
-        <tr><td>W/D</td></tr>
-        <tr><td>Neighborhood</td></tr>
+        <tr data-ng-repeat="quality in qualities"><td>{{quality}}</td></tr>
       </table>
     </div>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
