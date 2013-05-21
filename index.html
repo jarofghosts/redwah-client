@@ -12,8 +12,16 @@
     </header>
     <div data-ng-controller="GridCtrl">
       <table class="small-4 large-2 columns sticky">
-        <tr><td>Name</td></tr>
-        <tr data-ng-repeat="quality in qualities"><td>{{quality}}</td></tr>
+        <thead><tr><th>Name</th></tr></thead>
+        <tbody>
+          <tr data-ng-repeat="quality in qualities"><td>{{quality}}</td></tr>
+        </tbody>
+      </table>
+      <table data-ng-repeat="item in items" class="small-2 large-1 columns">
+        <thead><tr><th>{{item.name}}</th></tr></thead>
+        <tbody>
+          <tr data-ng-repeat="itemQuality in item.qualities"><td>{{itemQuality}}</td></tr>
+        </tbody>
       </table>
     </div>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
