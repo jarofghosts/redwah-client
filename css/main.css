@@ -12,3 +12,9 @@ td:first-child {
   font-weight: bold;
   color: #222;
 }
+th {
+  font-size: 1.1em;
+}
+.center {
+  text-align: center;
+}

@@ -9,6 +9,9 @@ function GridCtrl($scope) {
     },
     { "name": "House 3",
       "qualities": [0, 0, 0, 0, 0]
+    },
+    { "name": "House 4",
+      "qualities": [1, 0, 0, 0, 0]
     }
   ];
 }
