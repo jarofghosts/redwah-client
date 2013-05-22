@@ -15,6 +15,7 @@
         <thead><tr><th>Name</th></tr></thead>
         <tbody>
           <tr data-ng-repeat="quality in qualities"><td>{{quality}}</td></tr>
+          <tr><td><a class="button small round" data-ng-click="addQuality()">+</a> <input type="text" data-ng-model="qualityText" placeholder="Quality"></td></tr>
         </tbody>
       </table>
       <table data-ng-repeat="item in items" class="small-2 large-1 columns">

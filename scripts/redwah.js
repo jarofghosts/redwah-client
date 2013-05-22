@@ -12,6 +12,16 @@ function GridCtrl($scope) {
     },
     { "name": "House 4",
       "qualities": [1, 0, 0, 0, 0]
+    },
+    { "name": "House 5",
+      "qualities": [0, 0, 0, 0, 0]
     }
   ];
+  $scope.addQuality = function () {
+    $scope.qualities.push($scope.qualityText);
+    $scope.items.forEach(function (item) {
+      item.qualities.push(0);
+    });
+    $scope.qualityText = '';
+  };
 }
