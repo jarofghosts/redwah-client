@@ -15,7 +15,7 @@
       <table class="small-4 large-2 columns sticky">
         <thead><tr><th>Name</th><th data-ng-repeat="item in items">{{item.name}}</th></tr></thead>
         <tbody>
-          <tr data-ng-repeat="quality in qualities"><td>{{quality}}</td><td>{{items.qualities[$index]}}</td></tr>
+          <tr data-ng-repeat="quality in qualities"><td>{{quality}}</td><td data-ng-repeat="item in items" class="text-center">{{item.qualities[$parent.$index]}}</td></tr>
           <tr><td><a class="button small round" data-ng-click="addQuality()">+</a> <input type="text" data-ng-model="qualityText" placeholder="Quality"></td></tr>
         </tbody>
       </table>

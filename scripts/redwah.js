@@ -23,11 +23,13 @@ function GridCtrl($scope) {
       item.qualities.push(0);
     });
     $scope.qualityText = '';
+    $scope.$apply();
   };
   $scope.addItem = function () {
     var newItem = { "name": $scope.itemText, "qualities": [] }
     for (var i = $scope.qualities.length; i > 0; i--) { newItem.qualities.push(0); }
     $scope.items.push(newItem);
     $scope.itemText = '';
+    $scope.$apply();
   }
 }
