@@ -11,16 +11,23 @@
       Redwah
     </header>
     <div data-ng-controller="GridCtrl">
-      <a data-ng-click="addItem()" class="button small round">+</a><input class="small-5 large-5 columns" type="text" data-ng-model="itemText" placeholder="Item">
+      <form data-ng-submit="addItem()">
+      <button type="submit" class="button small round">+</button><input class="small-5 large-5 columns" type="text" data-ng-model="itemText" placeholder="Item">
+      </form>
       <table> 
         <thead><tr><th class="small-5 large-4 columns">Name</th><th data-ng-repeat="item in items"><a data-ng-click="removeItem($index)" class="button small round">-</a>{{item.name}}</th></tr></thead>
         <tbody>
           <tr data-ng-repeat="quality in qualities"><td><a data-ng-click="removeQuality($index)" class="button small round">-</a>{{quality}}</td><td data-ng-repeat="item in items" class="text-center">{{item.qualities[$parent.$index]}}</td></tr>
-          <tr><td><a class="button small round" data-ng-click="addQuality()">+</a> <input type="text" data-ng-model="qualityText" placeholder="Quality"></td></tr>
+          <tr><td>
+            <form data-ng-submit="addQuality()">
+              <button class="button small round" type="submit">+</button>
+              <input type="text" data-ng-model="qualityText" placeholder="Quality">
+            </form>
+          </td></tr>
         </tbody>
       </table>
    </div>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
     <script src="scripts/redwah.js"></script>
   </body>
 </html>
