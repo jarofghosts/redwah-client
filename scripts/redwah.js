@@ -41,4 +41,10 @@ function GridCtrl($scope) {
   $scope.removeItem = function (index) {
     $scope.items.splice(index, 1);
   };
+  $scope.lowerValue = function (item, quality) {
+    $scope.items[item].qualities[quality] > -3 && $scope.items[item].qualities[quality]--;
+  };
+  $scope.increaseValue = function (item, quality) {
+    $scope.items[item].qualities[quality] < 3 && $scope.items[item].qualities[quality]++;
+  };
 }
