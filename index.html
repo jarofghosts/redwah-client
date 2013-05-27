@@ -12,7 +12,11 @@
     </header>
     <div data-ng-controller="GridCtrl">
       <form data-ng-submit="addItem()">
-      <button type="submit" class="button small round">+</button><input class="small-5 large-5 columns" type="text" data-ng-model="itemText" placeholder="Item">
+        <div class="row">
+          <div class="small-5 large-5 columns">
+            <button type="submit" class="button small round">+</button><input type="text" data-ng-model="itemText" placeholder="Item">
+          </div>
+        </div>
       </form>
       <table> 
         <thead><tr><th class="small-5 large-4 columns">Name</th><th data-ng-repeat="item in items"><a data-ng-click="removeItem($index)" class="button small round">-</a>{{item.name}}</th></tr></thead>
