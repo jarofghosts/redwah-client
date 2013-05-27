@@ -25,7 +25,7 @@
       <table> 
         <thead><tr><th class="small-5 large-4 columns">Name</th><th data-ng-repeat="item in items"><a data-ng-click="removeItem($index)" class="button small round">-</a>{{item.name}}</th></tr></thead>
         <tbody>
-          <tr data-ng-repeat="quality in qualities"><td><a data-ng-click="removeQuality($index)" class="button small round">-</a>{{quality}}</td><td data-ng-repeat="item in items" class="text-center">{{item.qualities[$parent.$index]}}</td></tr>
+          <tr data-ng-repeat="quality in qualities"><td><a data-ng-click="removeQuality($index)" class="button small round">-</a>{{quality}}</td><td data-ng-repeat="item in items" class="text-center"><a data-ng-click="lowerValue($index, $parent.$index)">-</a> {{item.qualities[$parent.$index]}} <a data-ng-click="increaseValue($index, $parent.$index)">+</a></td></tr>
           <tr><td>
             <form data-ng-submit="addQuality()">
               <button class="button small round" type="submit">+</button>
