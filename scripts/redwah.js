@@ -47,4 +47,12 @@ function GridCtrl($scope) {
   $scope.increaseValue = function (item, quality) {
     $scope.items[item].qualities[quality] < 3 && $scope.items[item].qualities[quality]++;
   };
+  $scope.qualityTotal = function (qualities) {
+    var total = 0;
+    qualities.forEach(function (quality) {
+      total += quality;
+    });
+
+    return total;
+  };
 }

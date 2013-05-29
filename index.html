@@ -14,7 +14,7 @@
       <form data-ng-submit="addItem()">
         <div class="row">
           <div class="small-1 columns">
-             <button type="submit" class="button small round prefix">+</button>
+             <button type="submit" class="success button small round prefix">+</button>
           </div>
           <div class="small-5 columns">
            <input type="text" data-ng-model="itemText" placeholder="Item">
@@ -23,15 +23,16 @@
         </div>
       </form>
         <table> 
-          <thead><tr><th class="small-5 large-4 columns">Name</th><th data-ng-repeat="item in items"><a data-ng-click="removeItem($index)" class="button small round">-</a>{{item.name}}</th></tr></thead>
+          <thead><tr><th class="small-5 large-4 columns">Name</th><th data-ng-repeat="item in items"><a data-ng-click="removeItem($index)" class="secondary button small round">x</a>{{item.name}}</th></tr></thead>
           <tbody>
-            <tr data-ng-repeat="quality in qualities"><td><a data-ng-click="removeQuality($index)" class="button small round">-</a>{{quality}}</td><td data-ng-repeat="item in items" class="text-center"><a data-ng-click="lowerValue($index, $parent.$index)" class="button small round">-</a> {{item.qualities[$parent.$index]}} <a data-ng-click="increaseValue($index, $parent.$index)" class="button small round">+</a></td></tr>
+            <tr data-ng-repeat="quality in qualities"><td><a data-ng-click="removeQuality($index)" class="secondary button small round">x</a>{{quality}}</td><td data-ng-repeat="item in items" class="text-center"><a data-ng-click="lowerValue($index, $parent.$index)" class="button tiny round">-</a> {{item.qualities[$parent.$index]}} <a data-ng-click="increaseValue($index, $parent.$index)" class="button tiny round">+</a></td></tr>
             <tr><td>
               <form data-ng-submit="addQuality()">
-                <button class="button small round" type="submit">+</button>
+                <button class="success button small round" type="submit">+</button>
                 <input type="text" data-ng-model="qualityText" placeholder="Quality">
               </form>
             </td></tr>
+            <tr><td>Total</td><td data-ng-repeat="item in items" class="text-center">{{qualityTotal(item.qualities)}}</td>
           </tbody>
         </table>
    </div>
