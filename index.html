@@ -23,19 +23,18 @@
         </div>
       </form>
         <table> 
-          <thead><tr><th class="small-5 large-4 columns">Name</th><th data-ng-repeat="item in items"><a data-ng-click="removeItem($index)" class="secondary button small round">x</a>{{item.name}}</th></tr></thead>
+          <thead><tr><th class="small-5 large-4 columns">Name</th><th data-ng-repeat="item in items" data-ng-class="{highest: $index==highestItem}"><a data-ng-click="removeItem($index)" class="secondary button small round">x</a>{{item.name}}</th></tr></thead>
           <tbody>
-            <tr data-ng-repeat="quality in qualities"><td><a data-ng-click="removeQuality($index)" class="secondary button small round">x</a>{{quality}}</td><td data-ng-repeat="item in items" class="text-center"><a data-ng-click="lowerValue($index, $parent.$index)" class="button tiny round">-</a> {{item.qualities[$parent.$index]}} <a data-ng-click="increaseValue($index, $parent.$index)" class="button tiny round">+</a></td></tr>
+            <tr data-ng-repeat="quality in qualities"><td><a data-ng-click="removeQuality($index)" class="secondary button small round">x</a>{{quality}}</td><td data-ng-repeat="item in items" class="text-center" data-ng-class="{highest: $index==highestItem}"><a data-ng-click="lowerValue($index, $parent.$index)" class="button tiny round">-</a> {{item.qualities[$parent.$index]}} <a data-ng-click="increaseValue($index, $parent.$index)" class="button tiny round">+</a></td></tr>
             <tr><td>
               <form data-ng-submit="addQuality()">
                 <button class="success button small round" type="submit">+</button>
                 <input type="text" data-ng-model="qualityText" placeholder="Quality">
               </form>
             </td></tr>
-            <tr><td>Total</td><td data-ng-repeat="item in items" class="text-center"><span style="font-size:1.4em">{{qualityTotal(item.qualities)}}</span></td>
+            <tr><td>Total</td><td data-ng-repeat="item in items" data-ng-class="{highest: $index==highestItem}" class="text-center"><span style="font-size:1.4em">{{qualityTotal(item.qualities)}}</span></td>
           </tbody>
         </table>
-        <span>Highest index is {{highestItem}}</span>
    </div>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
     <script src="scripts/redwah.js"></script>
