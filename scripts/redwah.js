@@ -66,5 +66,5 @@ function GridCtrl($scope) {
         $scope.highestItem = index;
       }
     });
-  });
+  }, true);
 }
