@@ -20,6 +20,7 @@ function GridCtrl($scope) {
   ];
  
   $scope.addQuality = function () {
+    if (!$scope.qualityText.length) { return; }
     $scope.qualities.push($scope.qualityText);
     $scope.items.forEach(function (item) {
       item.qualities.push(0);
@@ -28,6 +29,7 @@ function GridCtrl($scope) {
     $scope.$apply();
   };
   $scope.addItem = function () {
+    if (!$scope.itemText.length) { return; }
     var newItem = { "name": $scope.itemText, "qualities": [] }
     for (var i = $scope.qualities.length; i > 0; i--) { newItem.qualities.push(0); }
     $scope.items.push(newItem);
