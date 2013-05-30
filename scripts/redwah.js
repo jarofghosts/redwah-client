@@ -1,4 +1,5 @@
 function GridCtrl($scope) {
+  $scope.highestItem = -1;
   $scope.qualities = [ "Good Kitchen",  "Cold Fridge", "Outlets", "W/D", "Neighborhood" ];
   $scope.items = [
     { "name": "House 1",
@@ -17,6 +18,7 @@ function GridCtrl($scope) {
       "qualities": [0, 0, 0, 0, 0]
     }
   ];
+ 
   $scope.addQuality = function () {
     $scope.qualities.push($scope.qualityText);
     $scope.items.forEach(function (item) {
@@ -55,4 +57,14 @@ function GridCtrl($scope) {
 
     return total;
   };
+  $scope.$watch("items", function () {
+  var highest = -1;
+    $scope.items.forEach(function (item, index) {
+      var myValue = $scope.qualityTotal(item.qualities);
+      if (myValue > highest) {
+        highest = myValue;
+        $scope.highestItem = index;
+      }
+    });
+  });
 }
