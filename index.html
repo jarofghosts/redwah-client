@@ -11,19 +11,27 @@
       Redwah
     </header>
     <div data-ng-controller="GridCtrl">
-      <form data-ng-submit="addItem()">
-        <div class="row collapse">
-          <div class="small-1 columns">
-             <button type="submit" class="success button small round prefix">+</button>
-          </div>
-          <div class="small-8 columns">
-           <input type="text" data-ng-model="itemText" placeholder="Item">
-          </div>
-          <div class="small-3 columns"></div>
-        </div>
-      </form>
-        <table> 
-          <thead><tr><th class="small-5 large-4 columns">Name</th><th data-ng-repeat="item in items" data-ng-class="{highest: $index==highestItem}"><a data-ng-click="removeItem($index)" class="secondary button tiny round">x</a>{{item.name}}</th></tr></thead>
+      <table> 
+        <thead>
+          <tr>
+            <th class="small-5 large-4 columns">Name</th>
+            <th data-ng-repeat="item in items" data-ng-class="{highest: $index==highestItem}">
+              <a data-ng-click="removeItem($index)" class="secondary button tiny round">x</a> {{item.name}}
+            </th>
+            <th>
+              <form data-ng-submit="addItem()">
+                <div class="row collapse">
+                  <div class="small-2 columns">
+                    <button type="submit" class="success button small round prefix">+</button>
+                  </div>
+                  <div class="small-10 columns">
+                    <input type="text" data-ng-model="itemText" placeholder="Item">
+                  </div>
+                </div>
+              </form>
+            </th>
+          </tr>
+        </thead>
           <tbody>
             <tr data-ng-repeat="quality in qualities"><td><a data-ng-click="removeQuality($index)" class="secondary button tiny round">x</a>{{quality}}</td><td data-ng-repeat="item in items" class="text-center" data-ng-class="{highest: $index==highestItem}"><a data-ng-click="lowerValue($index, $parent.$index)" class="button tiny round">-</a> {{item.qualities[$parent.$index]}} <a data-ng-click="increaseValue($index, $parent.$index)" class="button tiny round">+</a></td></tr>
             <tr><td>
