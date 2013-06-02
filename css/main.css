@@ -19,3 +19,7 @@ td:first-child {
 th {
   font-size: 1.1em;
 }
+span.total {
+  font-size: 1.1em;
+  font-weight: bold;
+}
