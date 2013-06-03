@@ -34,7 +34,7 @@ function GridCtrl($scope) {
     for (var i = $scope.qualities.length; i > 0; i--) { newItem.qualities.push(0); }
     $scope.items.push(newItem);
     $scope.itemText = '';
-    $scope.$apply();
+    //$scope.$apply();
   };
   $scope.removeQuality = function (index) {
     $scope.qualities.splice(index, 1);

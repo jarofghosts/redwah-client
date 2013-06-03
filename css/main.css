@@ -18,6 +18,7 @@ td:first-child {
 }
 th {
   font-size: 1.1em;
+  min-width: 2%;
 }
 span.total {
   font-size: 1.1em;
