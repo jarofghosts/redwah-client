@@ -1,7 +1,8 @@
 function GridCtrl($scope, $http) {
+
   $scope.highestItem = -1;
   $scope.loaded = false;
-  $scope.list = { name: '' };
+  $scope.listName = '';
   $scope.qualities = [];
   $scope.items = [];
  
@@ -20,7 +21,6 @@ function GridCtrl($scope, $http) {
     for (var i = $scope.qualities.length; i > 0; i--) { newItem.qualities.push(0); }
     $scope.items.push(newItem);
     $scope.itemText = '';
-    //$scope.$apply();
   };
   $scope.removeQuality = function (index) {
     $scope.qualities.splice(index, 1);
@@ -58,13 +58,25 @@ function GridCtrl($scope, $http) {
 
   $http.defaults.useXDomain = true;
 
+  $scope.createList = function () {
+    if (!listName.length) {
+      return false;
+    }
+
+    generateList(listName);
+
+  };
+  
   $scope.saveList = function () {
+
   };
 
-  $scope.generateList = function (listName) {
-    $http.post('http://projects.jessekeane.me/list', { name: listName })
+  var generateList = function (newListName) {
+    $http.post('http://projects.jessekeane.me/list', { name: newListName })
       .success(function (data, status) {
+        console.log(data);
         $location.replace().hash('!/' + data.id);
+        $scope.loaded = true;
       })
       .error(function (data, status) {
         alert('there was an error.');
