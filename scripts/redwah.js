@@ -76,7 +76,7 @@ function GridCtrl($scope) {
   $http.defaults.useXDomain = true;
 
   $scope.generateList = function (listName) {
-    $http.post('http://redwah.jessekeane.me/list', { name: listName })
+    $http.post('http://projects.jessekeane.me/list', { name: listName })
       .success(function (data, status) {
         $location.replace().hash('!/' + data.id);
       })
