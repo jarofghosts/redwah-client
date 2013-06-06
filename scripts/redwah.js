@@ -1,5 +1,7 @@
 function GridCtrl($scope, $http) {
   $scope.highestItem = -1;
+  $scope.loaded = false;
+  $scope.list = { name: ''};
   $scope.qualities = [ "Good Kitchen",  "Cold Fridge", "Outlets", "W/D", "Neighborhood" ];
   $scope.items = [
     { "name": "House 1",
