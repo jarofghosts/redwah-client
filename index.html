@@ -11,7 +11,7 @@
       Redwah
     </header>
     <div data-ng-controller="GridCtrl">
-      <div class="row collapse">
+      <div class="row collapse" data-ng-hide="loaded">
         <form data-ng-submit="createList()">
           <div class="small-10 columns">
             <input type="text" data-ng-model="listName" placeholder="Collection name...">
