@@ -73,7 +73,17 @@ function GridCtrl($scope) {
   $scope.saveList = function () {
   };
 
-  $scope.generateList = function () {
+  $http.defaults.useXDomain = true;
+
+  $scope.generateList = function (listName) {
+    $http.post('http://redwah.jessekeane.me/list', { name: listName })
+      .success(function (data, status) {
+        $location.replace().hash('!/' + data.id);
+      })
+      .error(function (data, status) {
+        alert('there was an error.');
+        console.log(data);
+      });
   };
 
   $scope.getList = function (listId) {
