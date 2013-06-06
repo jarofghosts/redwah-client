@@ -86,17 +86,6 @@ function GridCtrl($scope, $http) {
       });
   };
 
-  $scope.testAjax = function () {
-    $http.get('http://projects.jessekeane.me/')
-      .success(function (data, status) {
-        alert(data.version);
-      })
-      .error(function (data, status) {
-        alert('error');
-        console.log(data);
-      });
-  };
-
   $scope.getList = function (listId) {
   };
 
