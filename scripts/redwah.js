@@ -1,5 +1,9 @@
-function GridCtrl($scope, $http) {
+function GridCtrl($scope, $http, $location) {
 
+  $scope.remote = {
+    id: null,
+    rev: null
+  };
   $scope.highestItem = -1;
   $scope.loaded = false;
   $scope.listName = '';
@@ -74,8 +78,9 @@ function GridCtrl($scope, $http) {
   var generateList = function (newListName) {
     $http.post('http://projects.jessekeane.me/list', { name: newListName })
       .success(function (data, status) {
-        console.log(data);
-        $location.replace().hash('!/' + data.id);
+        $location.hash("/" + data.id);
+        $scope.remote.id = data.id;
+        $scope.remote.rev = data.rev;
         $scope.loaded = true;
       })
       .error(function (data, status) {
