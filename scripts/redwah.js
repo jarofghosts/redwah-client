@@ -1,4 +1,4 @@
-function GridCtrl($scope) {
+function GridCtrl($scope, $http) {
   $scope.highestItem = -1;
   $scope.qualities = [ "Good Kitchen",  "Cold Fridge", "Outlets", "W/D", "Neighborhood" ];
   $scope.items = [
@@ -82,6 +82,17 @@ function GridCtrl($scope) {
       })
       .error(function (data, status) {
         alert('there was an error.');
+        console.log(data);
+      });
+  };
+
+  $scope.testAjax = function () {
+    $http.get('http://projects.jessekeane.me/')
+      .success(function (data, status) {
+        alert(data.version);
+      })
+      .error(function (data, status) {
+        alert('error');
         console.log(data);
       });
   };
