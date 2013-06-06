@@ -51,10 +51,10 @@ function GridCtrl($scope, $http, $location) {
     return total;
   };
   $scope.$watch("items", function () {
-  if ($scope.items.length) {
-    saveList();
-  }
-  var highest = -1;
+    if ($scope.items.length && $scope.loaded) {
+      saveList();
+    }
+    var highest = -1;
     $scope.items.forEach(function (item, index) {
       var myValue = $scope.qualityTotal(item.qualities);
       if (myValue > highest) {
@@ -76,7 +76,7 @@ function GridCtrl($scope, $http, $location) {
   };
   
   var saveList = function () {
-    if (!$scope.loaded) { return; }
+    if (!$scope.loaded) { return false; }
     $http.put('http://projects.jessekeane.me/list',
       { id: $scope.remote.id,
         rev: $scope.remote.rev,
