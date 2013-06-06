@@ -18,7 +18,7 @@ function GridCtrl($scope, $http, $location) {
       item.qualities.push(0);
     });
     $scope.qualityText = '';
-    $scope.$apply();
+    //$scope.$apply();
   };
   $scope.addItem = function () {
     if (!$scope.itemText.length) { return; }
@@ -51,7 +51,9 @@ function GridCtrl($scope, $http, $location) {
     return total;
   };
   $scope.$watch("items", function () {
-  saveList();
+  if ($scope.items.length) {
+    saveList();
+  }
   var highest = -1;
     $scope.items.forEach(function (item, index) {
       var myValue = $scope.qualityTotal(item.qualities);
@@ -63,7 +65,9 @@ function GridCtrl($scope, $http, $location) {
   }, true);
 
   $scope.$watch("qualities", function () {
-    saveList();
+    if ($scope.qualities.length) {
+      saveList();
+    }
   }, true);
 
   $http.defaults.useXDomain = true;
@@ -85,6 +89,8 @@ function GridCtrl($scope, $http, $location) {
         qualities: $scope.qualities,
         items: $scope.items })
           .success(function (data, status) {
+            $scope.remote.rev = data.rev;
+            $location.path('/' + $scope.remote.id + '/' + $scope.remote.rev);
             console.log(data);
           })
           .error(function (data, status) {
@@ -96,7 +102,7 @@ function GridCtrl($scope, $http, $location) {
   var generateList = function (newListName) {
     $http.post('http://projects.jessekeane.me/list', { name: newListName })
       .success(function (data, status) {
-        $location.path("/" + data.id);
+        $location.path("/" + data.id + "/" + data.rev);
         $scope.remote.id = data.id;
         $scope.remote.rev = data.rev;
         $scope.loaded = true;
@@ -107,8 +113,8 @@ function GridCtrl($scope, $http, $location) {
       });
   };
 
-  var loadList = function (listId) {
-    $http.get('http://projects.jessekeane.me/list?id=' + listId)
+  var loadList = function (listId, rev) {
+    $http.get('http://projects.jessekeane.me/list?id=' + listId + '\&rev=' + rev)
       .success(function (data, status) {
         $scope.remote.id = data._id;
         $scope.remote.rev = data._rev;
@@ -116,6 +122,7 @@ function GridCtrl($scope, $http, $location) {
         $scope.qualities = data.qualities;
         $scope.listName = data.name;
         $scope.loaded = true;
+        $scope.apply();
       })
       .error(function (data, status) {
         alert('there was an error');
@@ -125,8 +132,9 @@ function GridCtrl($scope, $http, $location) {
   var removeList = function () {
   };
 
-  if ($location.hash().length) {
-    loadList($location.hash().substring(1));
+  if ($location.path().length) {
+    loadList($location.path().substring(1));
+    //alert($location.path());
   }
  
 
