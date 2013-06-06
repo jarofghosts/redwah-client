@@ -69,4 +69,16 @@ function GridCtrl($scope) {
       }
     });
   }, true);
+  
+  $scope.saveList = function () {
+  };
+
+  $scope.generateList = function () {
+  };
+
+  $scope.getList = function (listId) {
+  };
+
+  $scope.removeList = function () {
+  };
 }
