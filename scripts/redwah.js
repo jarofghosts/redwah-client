@@ -59,11 +59,11 @@ function GridCtrl($scope, $http) {
   $http.defaults.useXDomain = true;
 
   $scope.createList = function () {
-    if (!listName.length) {
+    if (!$scope.listName.length) {
       return false;
     }
 
-    generateList(listName);
+    generateList($scope.listName);
 
   };
   
