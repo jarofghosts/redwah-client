@@ -64,12 +64,6 @@ function GridCtrl($scope, $http, $location) {
     });
   }, true);
 
-  $scope.$watch("qualities", function () {
-    if ($scope.qualities.length) {
-      saveList();
-    }
-  }, true);
-
   $http.defaults.useXDomain = true;
 
   $scope.createList = function () {
@@ -82,6 +76,7 @@ function GridCtrl($scope, $http, $location) {
   };
   
   var saveList = function () {
+    if (!$scope.loaded) { return; }
     $http.put('http://projects.jessekeane.me/list',
       { id: $scope.remote.id,
         rev: $scope.remote.rev,
@@ -122,7 +117,6 @@ function GridCtrl($scope, $http, $location) {
         $scope.qualities = data.qualities;
         $scope.listName = data.name;
         $scope.loaded = true;
-        $scope.apply();
       })
       .error(function (data, status) {
         alert('there was an error');
@@ -133,7 +127,8 @@ function GridCtrl($scope, $http, $location) {
   };
 
   if ($location.path().length) {
-    loadList($location.path().substring(1));
+    var getDoc = $location.path().substring(1).split("/");
+    loadList(getDoc[0], getDoc[1]);
     //alert($location.path());
   }
  
