@@ -51,6 +51,7 @@ function GridCtrl($scope, $http, $location) {
     return total;
   };
   $scope.$watch("items", function () {
+  saveList();
   var highest = -1;
     $scope.items.forEach(function (item, index) {
       var myValue = $scope.qualityTotal(item.qualities);
@@ -59,6 +60,10 @@ function GridCtrl($scope, $http, $location) {
         $scope.highestItem = index;
       }
     });
+  }, true);
+
+  $scope.$watch("qualities", function () {
+    saveList();
   }, true);
 
   $http.defaults.useXDomain = true;
@@ -72,7 +77,7 @@ function GridCtrl($scope, $http, $location) {
 
   };
   
-  $scope.saveList = function () {
+  var saveList = function () {
     $http.put('http://projects.jessekeane.me/list',
       { id: $scope.remote.id,
         rev: $scope.remote.rev,
@@ -117,7 +122,7 @@ function GridCtrl($scope, $http, $location) {
       });
   };
 
-  $scope.removeList = function () {
+  var removeList = function () {
   };
 
   if ($location.hash().length) {
