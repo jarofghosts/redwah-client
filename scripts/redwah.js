@@ -1,25 +1,9 @@
 function GridCtrl($scope, $http) {
   $scope.highestItem = -1;
   $scope.loaded = false;
-  $scope.list = { name: ''};
-  $scope.qualities = [ "Good Kitchen",  "Cold Fridge", "Outlets", "W/D", "Neighborhood" ];
-  $scope.items = [
-    { "name": "House 1",
-      "qualities": [0, 0, 0, 0, 0]
-    },
-    { "name": "House 2",
-      "qualities": [0, 0, 0, 0, 0]
-    },
-    { "name": "House 3",
-      "qualities": [0, 0, 0, 0, 0]
-    },
-    { "name": "House 4",
-      "qualities": [1, 0, 0, 0, 0]
-    },
-    { "name": "House 5",
-      "qualities": [0, 0, 0, 0, 0]
-    }
-  ];
+  $scope.list = { name: '' };
+  $scope.qualities = [];
+  $scope.items = [];
  
   $scope.addQuality = function () {
     if (!$scope.qualityText.length) { return; }
@@ -71,11 +55,11 @@ function GridCtrl($scope, $http) {
       }
     });
   }, true);
-  
-  $scope.saveList = function () {
-  };
 
   $http.defaults.useXDomain = true;
+
+  $scope.saveList = function () {
+  };
 
   $scope.generateList = function (listName) {
     $http.post('http://projects.jessekeane.me/list', { name: listName })
