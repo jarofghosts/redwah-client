@@ -80,8 +80,11 @@ function GridCtrl($scope, $http, $location) {
         qualities: $scope.qualities,
         items: $scope.items })
           .success(function (data, status) {
+            console.log(data);
           })
           .error(function (data, status) {
+            alert('there was an error');
+            console.log(data);
           });
   };
 
