@@ -129,7 +129,6 @@ function GridCtrl($scope, $http, $location) {
   if ($location.path().length) {
     var getDoc = $location.path().substring(1).split("/");
     loadList(getDoc[0], getDoc[1]);
-    //alert($location.path());
   }
 
 }
