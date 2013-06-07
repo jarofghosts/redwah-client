@@ -131,6 +131,5 @@ function GridCtrl($scope, $http, $location) {
     loadList(getDoc[0], getDoc[1]);
     //alert($location.path());
   }
- 
 
 }
