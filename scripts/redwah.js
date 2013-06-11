@@ -97,7 +97,7 @@ function GridCtrl($scope, $http, $location) {
   var generateList = function (newListName) {
     $http.post('http://projects.jessekeane.me/list', { name: newListName })
       .success(function (data, status) {
-        $location.path("/" + data.id + "/" + data.rev);
+        $location.path("/" + data.id);
         $scope.remote.id = data.id;
         $scope.remote.rev = data.rev;
         $scope.loaded = true;
@@ -108,8 +108,8 @@ function GridCtrl($scope, $http, $location) {
       });
   };
 
-  var loadList = function (listId, rev) {
-    $http.get('http://projects.jessekeane.me/list?id=' + listId + '\&rev=' + rev)
+  var loadList = function (listId) {
+    $http.get('http://projects.jessekeane.me/list?id=' + listId)
       .success(function (data, status) {
         $scope.remote.id = data._id;
         $scope.remote.rev = data._rev;
@@ -127,8 +127,8 @@ function GridCtrl($scope, $http, $location) {
   };
 
   if ($location.path().length) {
-    var getDoc = $location.path().substring(1).split("/");
-    loadList(getDoc[0], getDoc[1]);
+    var getDoc = $location.path().substring(1);
+    loadList(getDoc);
   }
 
 }
