@@ -71,7 +71,19 @@ function GridCtrl($scope, $http, $location) {
       return false;
     }
 
-    generateList($scope.listName);
+    var newName = $scope.listName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+
+    $http.get('http://projects.jessekeane.me/list?id=' + newName)
+      .success(function (data, status) {
+        if (data.error && data.error == 'not_found') {
+          generateList(newName);
+        } else {
+          alert('there was an error, try a different name');
+        }
+      })
+      .error(function (data, status) {
+        alert('there was an error');
+      });
 
   };
   
