@@ -1,4 +1,5 @@
 redwah-client
 ===
 
-okay the server seems to kind of work, lets try this out.
+Make decisions with numbers. Cobbled this together as a proof of concept.
+Demo lives [here](http://science.jessekeane.me)
