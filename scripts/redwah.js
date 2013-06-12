@@ -85,7 +85,7 @@ function GridCtrl($scope, $http, $location) {
         items: $scope.items })
           .success(function (data, status) {
             $scope.remote.rev = data.rev;
-            $location.path('/' + $scope.remote.id + '/' + $scope.remote.rev);
+            $location.path('/' + $scope.remote.id);
             console.log(data);
           })
           .error(function (data, status) {
