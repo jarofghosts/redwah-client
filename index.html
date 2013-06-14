@@ -17,8 +17,11 @@
 </head>
   <body>
     <header>
-      Redwah/ {{listName}} <a data-ng-hide="finished" data-ng-show="loaded" data-ng-click="finishList()">All Done!</a>
+      Redwah/ {{listName}}
     </header>
+    <div class="right">
+      <a class="button radius" data-ng-hide="finished" data-ng-show="loaded" data-ng-click="finishList()">All Done!</a>
+    </div>
     <div>
       <div class="row collapse" data-ng-hide="loaded">
         <form data-ng-submit="createList()">

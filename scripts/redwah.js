@@ -19,7 +19,6 @@ function GridCtrl($scope, $http, $location) {
       item.qualities.push(0);
     });
     $scope.qualityText = '';
-    //$scope.$apply();
   };
   $scope.finishList = function () {
     $scope.finished = true;
@@ -77,12 +76,12 @@ function GridCtrl($scope, $http, $location) {
       return false;
     }
 
-    var newName = $scope.listName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    var newId = $scope.listName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
-    $http.get('http://projects.jessekeane.me/list?id=' + newName)
+    $http.get('http://projects.jessekeane.me/list?id=' + newId)
       .success(function (data, status) {
         if (data.error && data.error == 'not_found') {
-          generateList(newName);
+          generateList(newId, newName);
         } else {
           alert('there was an error, try a different name');
         }
@@ -113,8 +112,8 @@ function GridCtrl($scope, $http, $location) {
           });
   };
 
-  var generateList = function (newListName) {
-    $http.post('http://projects.jessekeane.me/list', { name: newListName })
+  var generateList = function (newId, newListName) {
+    $http.post('http://projects.jessekeane.me/list', { id: newId, name: newListName })
       .success(function (data, status) {
         $location.path("/" + data.id);
         $scope.remote.id = data.id;
@@ -132,8 +131,8 @@ function GridCtrl($scope, $http, $location) {
       .success(function (data, status) {
         $scope.remote.id = data._id;
         $scope.remote.rev = data._rev;
-        $scope.items = data.items;
-        $scope.qualities = data.qualities;
+        $scope.items = data.items || [];
+        $scope.qualities = data.qualities || [];
         $scope.listName = data.name;
         $scope.finished = data.finished;
         $scope.loaded = true;
