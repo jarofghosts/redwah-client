@@ -129,6 +129,9 @@ function GridCtrl($scope, $http, $location) {
   var loadList = function (listId) {
     $http.get('http://projects.jessekeane.me/list?id=' + listId)
       .success(function (data, status) {
+        if (data.error && data.error == 'not_found') {
+          return generateList(listId, listId);
+        }
         $scope.remote.id = data._id;
         $scope.remote.rev = data._rev;
         $scope.items = data.items || [];
@@ -145,6 +148,7 @@ function GridCtrl($scope, $http, $location) {
   var removeList = function (listId) {
     $http.del('http://projects.jessekeane.me', { id: listId })
       .success(function (data, status) {
+        
       })
       .error(function (data, status) {
         alert('there was an error');
