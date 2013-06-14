@@ -7,6 +7,7 @@ function GridCtrl($scope, $http, $location) {
 
   $scope.highestItem = -1;
   $scope.loaded = false;
+  $scope.finished = false;
   $scope.listName = '';
   $scope.qualities = [];
   $scope.items = [];
@@ -19,6 +20,10 @@ function GridCtrl($scope, $http, $location) {
     });
     $scope.qualityText = '';
     //$scope.$apply();
+  };
+  $scope.finishList = function () {
+    $scope.finished = true;
+    saveList();
   };
   $scope.addItem = function () {
     if (!$scope.itemText.length) { return; }
@@ -95,7 +100,8 @@ function GridCtrl($scope, $http, $location) {
         rev: $scope.remote.rev,
         name: $scope.listName,
         qualities: $scope.qualities,
-        items: $scope.items })
+        items: $scope.items,
+        finished: $scope.finished })
           .success(function (data, status) {
             $scope.remote.rev = data.rev;
             $location.path('/' + $scope.remote.id);
