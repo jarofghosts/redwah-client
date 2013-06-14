@@ -142,7 +142,14 @@ function GridCtrl($scope, $http, $location) {
       });
   };
 
-  var removeList = function () {
+  var removeList = function (listId) {
+    $http.del('http://projects.jessekeane.me', { id: listId })
+      .success(function (data, status) {
+      })
+      .error(function (data, status) {
+        alert('there was an error');
+        console.log(data);
+      });
   };
 
   if ($location.path().length) {
