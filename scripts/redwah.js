@@ -22,10 +22,11 @@ function GridCtrl($scope, $http, $location) {
   };
   $scope.addItem = function () {
     if (!$scope.itemText.length) { return; }
-    var newItem = { "name": $scope.itemText, "qualities": [] }
+    var newItem = { "name": $scope.itemText, "qualities": [], "description": $scope.itemDescription }
     for (var i = $scope.qualities.length; i > 0; i--) { newItem.qualities.push(0); }
     $scope.items.push(newItem);
     $scope.itemText = '';
+    $scope.itemDescription = '';
   };
   $scope.removeQuality = function (index) {
     $scope.qualities.splice(index, 1);
@@ -128,6 +129,7 @@ function GridCtrl($scope, $http, $location) {
         $scope.items = data.items;
         $scope.qualities = data.qualities;
         $scope.listName = data.name;
+        $scope.finished = data.finished;
         $scope.loaded = true;
       })
       .error(function (data, status) {

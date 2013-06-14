@@ -1,8 +1,8 @@
 <!doctype html>
-<html lang="en" data-ng-app>
+<html lang="en" data-ng-app data-ng-controller="GridCtrl">
   <head>
     <meta charset="utf-8">
-    <title>Redwah</title>
+    <title>Redwah/ {{listName}}</title>
     <link rel="stylesheet" href="css/foundation.css">
     <link rel="stylesheet" href="css/main.css">
     <style>
@@ -17,9 +17,9 @@
 </head>
   <body>
     <header>
-      Redwah
+      Redwah/ {{listName}} <a data-ng-hide="finished" data-ng-show="loaded" data-ng-click="finishList()">All Done!</a>
     </header>
-    <div data-ng-controller="GridCtrl">
+    <div>
       <div class="row collapse" data-ng-hide="loaded">
         <form data-ng-submit="createList()">
           <div class="small-10 columns">
@@ -37,7 +37,7 @@
             <th data-ng-repeat="item in items" data-ng-class="{highest: $index==highestItem}">
               <a data-ng-click="removeItem($index)" class="secondary button tiny round"><span class="typicons-delete"></span></a> {{item.name}}
             </th>
-            <th>
+            <th data-ng-hide="finished">
               <form data-ng-submit="addItem()">
                 <div class="row collapse">
                   <div class="small-2 columns">
@@ -57,12 +57,12 @@
                 <a data-ng-click="removeQuality($index)" class="secondary button tiny round"><span class="typicons-delete"></span></a> {{quality}}
               </td>
               <td data-ng-repeat="item in items" class="text-center" data-ng-class="{highest: $index==highestItem}">
-                <a data-ng-click="lowerValue($index, $parent.$index)" class="button tiny round"><span class="typicons-minus"></span></a>
+                <a data-ng-hide="finished" data-ng-click="lowerValue($index, $parent.$index)" class="button tiny round"><span class="typicons-minus"></span></a>
                   {{item.qualities[$parent.$index]}}
-                <a data-ng-click="increaseValue($index, $parent.$index)" class="button tiny round"><span class="typicons-plus"></span></a>
+                <a data-ng-hide="finished" data-ng-click="increaseValue($index, $parent.$index)" class="button tiny round"><span class="typicons-plus"></span></a>
               </td>
             </tr>
-            <tr>
+            <tr data-ng-hide="finished">
               <td>
                 <form data-ng-submit="addQuality()">
                   <div class="row collapse">
