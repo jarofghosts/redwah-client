@@ -130,6 +130,7 @@ function GridCtrl($scope, $http, $location) {
     $http.get('http://projects.jessekeane.me/list?id=' + listId)
       .success(function (data, status) {
         if (data.error && data.error == 'not_found') {
+          $scope.listName = listId;
           return generateList(listId, listId);
         }
         $scope.remote.id = data._id;
