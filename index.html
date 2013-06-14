@@ -19,8 +19,11 @@
     <header>
       Redwah/ {{listName}}
     </header>
-    <div class="right">
-      <a class="button radius" data-ng-hide="finished" data-ng-show="loaded" data-ng-click="finishList()">All Done!</a>
+    <div data-ng-show="finished" class="text-center">
+      <h4>Winner: {{items[highestItem].name}}</h4>
+    </div>
+    <div class="right" data-ng-show="loaded">
+      <a class="button radius" data-ng-click="finishList()" data-ng-hide="finished">All Done!</a>
     </div>
     <div>
       <div class="row collapse" data-ng-hide="loaded">
@@ -38,7 +41,7 @@
           <tr>
             <th class="small-5 large-4 columns">Name</th>
             <th data-ng-repeat="item in items" data-ng-class="{highest: $index==highestItem}">
-              <a data-ng-click="removeItem($index)" class="secondary button tiny round"><span class="typicons-delete"></span></a> {{item.name}}
+              <a data-ng-hide="finished" data-ng-click="removeItem($index)" class="secondary button tiny round"><span class="typicons-delete"></span></a> {{item.name}}
             </th>
             <th data-ng-hide="finished">
               <form data-ng-submit="addItem()">
@@ -57,7 +60,7 @@
           <tbody>
             <tr data-ng-repeat="quality in qualities">
               <td>
-                <a data-ng-click="removeQuality($index)" class="secondary button tiny round"><span class="typicons-delete"></span></a> {{quality}}
+                <a data-ng-hide="finished" data-ng-click="removeQuality($index)" class="secondary button tiny round"><span class="typicons-delete"></span></a> {{quality}}
               </td>
               <td data-ng-repeat="item in items" class="text-center" data-ng-class="{highest: $index==highestItem}">
                 <a data-ng-hide="finished" data-ng-click="lowerValue($index, $parent.$index)" class="button tiny round"><span class="typicons-minus"></span></a>
