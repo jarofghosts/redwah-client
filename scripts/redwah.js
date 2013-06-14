@@ -25,12 +25,23 @@ function GridCtrl($scope, $http, $location) {
     saveList();
   };
   $scope.addItem = function () {
+    
     if (!$scope.itemText.length) { return; }
-    var newItem = { "name": $scope.itemText, "qualities": [], "description": $scope.itemDescription }
-    for (var i = $scope.qualities.length; i > 0; i--) { newItem.qualities.push(0); }
+    
+    var newItem = {
+      "name": $scope.itemText,
+      "qualities": [],
+      "description": $scope.itemDescription
+    };
+
+    for (var i = $scope.qualities.length; i > 0; i--) {
+      newItem.qualities.push(0);
+    }
+
     $scope.items.push(newItem);
     $scope.itemText = '';
     $scope.itemDescription = '';
+
   };
   $scope.removeQuality = function (index) {
     $scope.qualities.splice(index, 1);
@@ -47,7 +58,7 @@ function GridCtrl($scope, $http, $location) {
   $scope.increaseValue = function (item, quality) {
     $scope.items[item].qualities[quality] < 3 && $scope.items[item].qualities[quality]++;
   };
-  $scope.qualityTotal = function (qualities) {
+  qualityTotal = function (qualities) {
     var total = 0;
     qualities.forEach(function (quality) {
       total += quality;
@@ -61,7 +72,7 @@ function GridCtrl($scope, $http, $location) {
     }
     var highest = -1;
     $scope.items.forEach(function (item, index) {
-      var myValue = $scope.qualityTotal(item.qualities);
+      var myValue = qualityTotal(item.qualities);
       if (myValue > highest) {
         highest = myValue;
         $scope.highestItem = index;

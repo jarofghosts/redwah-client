@@ -50,7 +50,12 @@
                     <button type="submit" class="success button small radius prefix"><span class="typicons-plus"></span></button>
                   </div>
                   <div class="small-10 columns">
-                    <input type="text" data-ng-model="itemText" placeholder="Item">
+                    <input type="text" data-ng-model="itemText" placeholder="Item name...">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="small-12 columns">
+                    <textarea data-ng-model="itemDescription" placeholder="Description"></textarea>
                   </div>
                 </div>
               </form>
@@ -73,7 +78,9 @@
                 <form data-ng-submit="addQuality()">
                   <div class="row collapse">
                     <div class="small-2 columns">
-                      <button class="success button small radius prefix" type="submit"><span class="typicons-plus"></span></button>
+                      <button class="success button small radius prefix" type="submit">
+                        <span class="typicons-plus"></span>
+                      </button>
                     </div>
                     <div class="small-10 columns">
                       <input type="text" data-ng-model="qualityText" placeholder="Quality">
