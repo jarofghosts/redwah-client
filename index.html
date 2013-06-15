@@ -41,7 +41,9 @@
           <tr>
             <th class="small-5 large-4 columns">Name</th>
             <th data-ng-repeat="item in items" data-ng-class="{highest: $index==highestItem}">
-              <a data-ng-hide="finished" data-ng-click="removeItem($index)" class="secondary button tiny round"><span class="typicons-delete"></span></a> {{item.name}}
+              <a data-ng-hide="finished" data-ng-click="removeItem($index)" class="secondary button tiny round"><span class="typicons-delete"></span></a>
+              {{item.name}}
+              <p>{{item.description}}</p>
             </th>
             <th data-ng-hide="finished">
               <form data-ng-submit="addItem()">
