@@ -87,7 +87,8 @@ function GridCtrl($scope, $http, $location) {
       return false;
     }
 
-    var newId = $scope.listName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    var newId = $scope.listName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''),
+      newName = $scope.listName;
 
     $http.get('http://projects.jessekeane.me/list?id=' + newId)
       .success(function (data, status) {
